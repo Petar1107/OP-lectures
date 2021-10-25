@@ -1,13 +1,13 @@
 //3. Definirati strukturu kruznica i strukturu pravokutnik koja predstavlja
 //pravokutnik èije su stranice paralelne sa osima apscisa i ordinata. Napisati
-//funkciju koja prima niz pravokutnika i jednu kruznicu i vraæa broj pravokutnika koji sijeku kružnicu. Niz pravokutnika i kružnica šalju se u funkciju
+//check_intersectionsciju koja prima niz pravokutnika i jednu kruznicu i vraæa broj pravokutnika koji sijeku kružnicu. Niz pravokutnika i kružnica šalju se u check_intersectionsciju
 //pomoæu const referenci.
 //
 #include <bits/stdc++.h>
 #include <iostream>
 using namespace std;
 
-struct pravokutnik
+struct rectangle
 {
     int x1;
     int x2;
@@ -15,64 +15,55 @@ struct pravokutnik
     int y2;
 };
 
-struct kruznica
+struct circle
 {
     int x;
     int y;
     int r;
 };
 
-int check (pravokutnik *arr_pravokutnik, kruznica &kr)
+int check_intersections(rectangle *arr_rectangle, circle &kr,int num_rec)
 {
-    float distance_a, distance_c;
+    float distance_first_point;
+    float distance_second_point;
     int counter=0;
-
-    for(int i=0; i<1; i++)
+    for(int i=0; i<num_rec; i++)
     {
 
-        distance_a= sqrt(fabsf(pow(arr_pravokutnik->x1-kr.x, 2) + pow(arr_pravokutnik->y1-kr.y, 2)));
-        distance_c= sqrt(fabsf(pow(arr_pravokutnik->x2-kr.x, 2) + pow(arr_pravokutnik->y2-kr.y, 2)));
-        if((min(distance_a, distance_c) <= kr.r )&&(max(distance_a, distance_c) >= kr.r))
-        {
+        distance_first_point = sqrt(fabsf(pow(arr_rectangle->x1-kr.x, 2) + pow(arr_rectangle->y1-kr.y, 2)));
+        distance_second_point = sqrt(fabsf(pow(arr_rectangle->x2-kr.x, 2) + pow(arr_rectangle->y2-kr.y, 2)));
+        if((min(distance_first_point, distance_second_point) <= kr.r )&&(max(distance_first_point, distance_second_point) >= kr.r))
             counter++;
-        }
     }
     return counter;
 }
-void input_pravokutnik(pravokutnik* arr_pravokutnik,int n)
-{
-    for(int i=0; i<n; i++)
-    {
-        cout <<"unesite x1: ";
-        cin >>arr_pravokutnik->x1;
-        cout <<"unesite y1: ";
-        cin >>arr_pravokutnik->y1;
 
-        cout <<"unesite x2: ";
-        cin >> arr_pravokutnik->x2;
-        cout << "unesite y2: ";
-        cin >> arr_pravokutnik->y2;
-    }
-}
-void input_kruznica(kruznica kr)
-{
-    cout<<"unesite x:";
-    cin>>kr.x;
-    cout<<"unesite y:";
-    cin>>kr.y;
-    cout<<"unesite radijus:";
-    cin>>kr.r;
-}
 int main(void)
 {
-    int broj;
+    int num_rec;
     cout << "unesite broj pravokutnika: " << endl;
-    cin >> broj;
-    pravokutnik* arr_pravokutnik = new pravokutnik[broj];
-    kruznica kr;
-    cout << "unesite kordinate sredista kruznice i radijus: " << endl;
-    input_kruznica(kr);
-    cout << "unesite kordinate dvije tocke pravokutnika: " << endl;
-    input_pravokutnik(arr_pravokutnik,broj);
-    cout<< check(arr_pravokutnik, kr);
+    cin >> num_rec;
+    rectangle* arr_rectangle = new rectangle[num_rec];
+    circle kr;
+    for(int i=0; i<num_rec; i++)
+    {
+        cout <<"Unesite x1:";
+        cin >> arr_rectangle->x1;
+        cout << "Unesite y1:";
+        cin >> arr_rectangle->y1;
+
+        cout <<"Unesite x2:";
+        cin >> arr_rectangle->x2;
+        cout <<"Unesite y2:";
+        cin >> arr_rectangle->y2;
+    }
+    cout << "Unesite x kordinatu sredista kruznice: ";
+    cin >> kr.x;
+    cout << "Unesite y kordinatu sredista kruznice:";
+    cin >> kr.y;
+    cout << "Unesite radijus:";
+    cin >> kr.r;
+    cout<<check_intersections(arr_rectangle, kr,num_rec);
+    return 0;
 }
+
