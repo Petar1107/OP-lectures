@@ -26,13 +26,17 @@ int check_intersections(rectangle *arr_rectangle, circle &kr,int num_rec)
 {
     float distance_first_point;
     float distance_second_point;
+    float distance_third_point;
+    float distance_fourth_point;
     int counter=0;
     for(int i=0; i<num_rec; i++)
     {
 
         distance_first_point = sqrt(fabsf(pow(arr_rectangle->x1-kr.x, 2) + pow(arr_rectangle->y1-kr.y, 2)));
         distance_second_point = sqrt(fabsf(pow(arr_rectangle->x2-kr.x, 2) + pow(arr_rectangle->y2-kr.y, 2)));
-        if((min(distance_first_point, distance_second_point) <= kr.r )&&(max(distance_first_point, distance_second_point) >= kr.r))
+        distance_third_point= sqrt(fabsf(pow(arr_rectangle->x2-kr.x, 2) + pow(arr_rectangle->y1-kr.y, 2)));
+        distance_fourth_point = sqrt(fabsf(pow(arr_rectangle->x1-kr.x, 2) + pow(arr_rectangle->y2-kr.y, 2)));
+        if(((min(distance_first_point, distance_second_point) <= kr.r )&&(max(distance_first_point, distance_second_point) >= kr.r)) || ((min(distance_third_point, distance_fourth_point) <= kr.r )&&(max(distance_third_point, distance_fourth_point) >= kr.r)))
             counter++;
     }
     return counter;
@@ -66,4 +70,3 @@ int main(void)
     cout<<check_intersections(arr_rectangle, kr,num_rec);
     return 0;
 }
-
