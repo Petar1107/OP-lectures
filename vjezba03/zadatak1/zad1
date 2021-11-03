@@ -1,0 +1,64 @@
+/*Za unos vektora napisati dvije funkcije:
+• funkcija čiji su parametri referenca na vektor i broj elemenata vektora,
+• funkcija čiji su parametri referenca na vektor i granice intervala u kojem
+trebaju biti elementi vektora. Elementi vektora se unose u funkciji, sve dok
+se ne unese broj koji nije u danom intervalu*/
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+void input_vector(vector<int>& v, int el)
+{
+	int n;
+	cout << "unesite brojeve niza: " << endl;
+	for (int i = 0; i < el; i++)
+	{
+		cin >> n;
+		v.push_back(n);
+	}
+}
+int input_vector1(vector<int>& v, int a, int b)
+{
+	cout << "unesite brojeve niza: " << endl;
+	int n;
+	int counter=0;
+	for (;;)
+	{
+		cin >> n;
+		if (n >= a && n <= b)
+		{
+			v.push_back(n);
+			counter++;
+		}
+		else
+			break;
+	}
+	return counter;
+}
+void output_vector(vector<int> v, int el)
+{
+	for (int i = 0; i < el; i++)
+	{
+		cout << v[i] << " ";
+	}
+}
+int main(void)
+{
+	vector<int> v;
+	vector<int> v1;
+	int el;
+	int el2;
+	int a;
+	int b;
+	cout << "unesite broj clanova niza: " << endl;
+	cin >> el;
+	input_vector(v, el);
+	output_vector(v, el);
+	cout << endl;
+	cout << "unesite granice clanova drugog niza: " << endl;
+	cin >> a >> b;
+	el2=input_vector1(v1, a, b);
+	output_vector(v1, el2);
+	return 0;
+
+}
