@@ -1,0 +1,91 @@
+/*Koristeći funkcije iz prvog zadatka unijeti dva vektora i formirati novi vektor koji
+se sastoji od elemenata iz prvog vektora koji nisu u drugom vektoru*/
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+void input_vector(vector<int>& v, int el)
+{
+	int n;
+	cout << "unesite brojeve niza: " << endl;
+	for (int i = 0; i < el; i++)
+	{
+		cin >> n;
+		v.push_back(n);
+	}
+}
+int input_vector1(vector<int>& v, int a, int b)
+{
+	cout << "unesite brojeve niza: " << endl;
+	int n;
+	int counter = 0;
+	for (;;)
+	{
+		cin >> n;
+		if (n >= a && n <= b)
+		{
+			v.push_back(n);
+			counter++;
+		}
+		else
+			break;
+	}
+	return counter;
+}
+void new_vector(vector<int> v, vector <int> v1, vector <int>& v2)
+{
+	int size_v, size_v1;
+	size_v = v.size();
+	size_v1 = v1.size();
+	for (int i = 0; i < size_v; i++)
+	{
+		int counter =1;
+		for (int j = 0; j < size_v1; j++)
+		{
+			if (v[i] == v1[j])
+			{
+				counter =0;
+				break;
+			}
+		}
+		if (counter>=1)
+		{
+			v2.push_back(v[i]);
+		}
+	}
+}
+void output_vector(vector<int> v, int el)
+{
+	for (int i = 0; i < el; i++)
+	{
+		cout << v[i] << " ";
+	}
+}
+int main(void)
+{
+	vector<int> v;
+	vector<int> v1;
+	vector<int> v2;
+	int el;
+	int el2;
+	int el3;
+	int a;
+	int b;
+	cout << "unesite broj clanova niza: " << endl;
+	cin >> el;
+	input_vector(v, el);
+	cout << "prvi niz je ->  ";
+	output_vector(v, el);
+	cout << endl;
+	cout << "unesite granice clanova drugog niza: " << endl;
+	cin >> a >> b;
+	el2 = input_vector1(v1, a, b);
+	cout << "drugi niz je ->  ";
+	output_vector(v1, el2);
+	cout << endl << endl;
+	new_vector(v, v1, v2);
+	cout << "novi niz koji sadrzi elemente prvog koji nisu u drugom nizu je ->  ";
+	output_vector(v2, v2.size());
+	return 0;
+
+}
