@@ -8,16 +8,16 @@ using namespace std;
 void input_vector(vector<int>& v, int el)
 {
 	int n;
-	cout << "unesite brojeve niza: " << endl;
+	cout << "enter the members of the array: " << endl;
 	for (int i = 0; i < el; i++)
 	{
 		cin >> n;
 		v.push_back(n);
 	}
 }
-void output_vector(vector<int> v, int el)
+void output_vector(vector<int> v)
 {
-	for (int i = 0; i < el; i++)
+	for (int i = 0; i < v.size(); i++)
 	{
 		cout << v[i] << " ";
 	}
@@ -35,15 +35,17 @@ int main(void)
 	vector<int> v;
 	int el;
 	int el2;
-	cout << "unesite broj elemenata niza: " << endl;
+	cout << "enter the number of members: " << endl;
 	cin >> el;
 	input_vector(v, el);
-	cout << "unesite broj elemenata kojeg zelite obrisati: " << endl;
+	cout << "enter the number of the member you want to delete: " << endl;
 	cin >> el2;
 	delete_el(v,el2-1);
-	output_vector(v,v.size());
+	output_vector(v);
 	return 0;
-
 }
+
+
+
 
 
