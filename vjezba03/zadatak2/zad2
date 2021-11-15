@@ -7,30 +7,27 @@ using namespace std;
 void input_vector(vector<int>& v, int el)
 {
 	int n;
-	cout << "unesite brojeve niza: " << endl;
+	cout << "enter the members of the array: " << endl;
 	for (int i = 0; i < el; i++)
 	{
 		cin >> n;
 		v.push_back(n);
 	}
 }
-int input_vector1(vector<int>& v, int a, int b)
+void input_vector1(vector<int>& v, int a, int b)
 {
-	cout << "unesite brojeve niza: " << endl;
+	cout << "enter the members of the array " << endl;
 	int n;
-	int counter = 0;
 	for (;;)
 	{
 		cin >> n;
 		if (n >= a && n <= b)
 		{
 			v.push_back(n);
-			counter++;
 		}
 		else
 			break;
 	}
-	return counter;
 }
 void new_vector(vector<int> v, vector <int> v1, vector <int>& v2)
 {
@@ -54,9 +51,9 @@ void new_vector(vector<int> v, vector <int> v1, vector <int>& v2)
 		}
 	}
 }
-void output_vector(vector<int> v, int el)
+void output_vector(vector<int> v)
 {
-	for (int i = 0; i < el; i++)
+	for (int i = 0; i < v.size(); i++)
 	{
 		cout << v[i] << " ";
 	}
@@ -67,25 +64,23 @@ int main(void)
 	vector<int> v1;
 	vector<int> v2;
 	int el;
-	int el2;
-	int el3;
 	int a;
 	int b;
-	cout << "unesite broj clanova niza: " << endl;
+	cout << "enter the number of members: " << endl;
 	cin >> el;
 	input_vector(v, el);
-	cout << "prvi niz je ->  ";
-	output_vector(v, el);
+	cout << "first array ->  ";
+	output_vector(v);
 	cout << endl;
-	cout << "unesite granice clanova drugog niza: " << endl;
+	cout << "enter the size limits of the members of the array: " << endl;
 	cin >> a >> b;
-	el2 = input_vector1(v1, a, b);
-	cout << "drugi niz je ->  ";
-	output_vector(v1, el2);
+	input_vector1(v1, a, b);
+	cout << "second array ->  ";
+	output_vector(v1);
 	cout << endl << endl;
 	new_vector(v, v1, v2);
-	cout << "novi niz koji sadrzi elemente prvog koji nisu u drugom nizu je ->  ";
-	output_vector(v2, v2.size());
+	cout << "new array with elements of first array without elements of the second array ->  ";
+	output_vector(v2);
 	return 0;
 
 }
