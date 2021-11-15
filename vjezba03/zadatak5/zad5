@@ -41,13 +41,31 @@ int counter_substr(string str, string substr)
     }
     return counter;
 }
+int counter_substring1(string string1, string substr)
+{
+    int counter = 0;
+    int position = 0;
+    while ((position = string1.find(substr, position)) != string::npos)
+    {
+        counter++;
+        position += substr.length();
+    }
+    return counter;
+}
 int main(void)
 {
     string str, substr;
-    cout << "unesite string i podstring: ";
+    cout << "enter the string and substring: ";
     cin >> str >> substr;
-    int brojac = counter_substr(str, substr);
-    cout << brojac;
-
+    int counter = counter_substr(str, substr);
+    int counter1 = counter_substring1(str, substr);
+    cout << counter << endl;
+    cout << "drugi nacin je: " << counter1 << endl;
 }
+
+
+
+
+
+
 
